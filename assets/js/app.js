@@ -1,51 +1,35 @@
 (function () {
   var INTERESTS = [
-    { key: "comedy", label: "Comedy" },
-    { key: "music", label: "Music" },
-    { key: "pets", label: "Pets" },
-    { key: "daily", label: "Daily life" },
-    { key: "food", label: "Food & Drink" },
-    { key: "sports", label: "Sports" },
-    { key: "art", label: "Art" },
-    { key: "fitness", label: "Fitness & Health" },
-    { key: "lifehacks", label: "Life Hacks" },
-    { key: "science", label: "Science & Education" },
-    { key: "animals", label: "Animals" },
-    { key: "gaming", label: "Gaming" },
-    { key: "beauty", label: "Beauty & Style" },
-    { key: "fashion", label: "Fashion" },
-    { key: "tech", label: "Tech" },
-    { key: "travel", label: "Travel" },
-    { key: "diy", label: "DIY & Home" },
-    { key: "auto", label: "Auto & Vehicles" },
-    { key: "dance", label: "Dance" },
-    { key: "outdoors", label: "Outdoors" },
-    { key: "anime", label: "Anime & Comics" },
-    { key: "relationships", label: "Relationships" },
-    { key: "finance", label: "Finance & Business" },
-    { key: "movies", label: "Movies & TV" }
-  ];
-
-  var LOCAL_THUMBS = [
-    "./nuj-figma-assets/0de7c2d69fff2f43315eb2c31ffdf553e4d7628a.png",
-    "./nuj-figma-assets/290ef150dae7f4fc1103a57df3d2ffbc764312bb.png",
-    "./nuj-figma-assets/324271ad51479895e9c8952e4b6e0ea64236e56f.png",
-    "./nuj-figma-assets/5e2766520918df532d6a856db02c0c5ad421d057.png",
-    "./nuj-figma-assets/85c047adf2cfa017c1a71885fddbe6e08dd8f699.png",
-    "./nuj-figma-assets/a3e9688238256cc61b3f143aa02e901011735323.png",
-    "./nuj-figma-assets/b2227e8210ad6816bd6f072bba325d571e2a5229.png",
-    "./nuj-figma-assets/cf6bcf64315b57b83c914c35daf69013d09fcb22.png",
-    "./nuj-figma-assets/ec61462893a3f6082b73845663486bed03d3a50b.png",
-    "./nuj-figma-assets/ec9af10cb6a1dded0598e164d1dd85f825c40506.png",
-    "./nuj-figma-assets/eda1a7331bbf37a070e6538f61b445fec3bbdd29.png"
+    { key: "comicita", label: "Comicità", image: "./image/Comicità.png" },
+    { key: "sport", label: "Sport", image: "./image/Sport.png" },
+    { key: "cibo-bevande", label: "Cibo e Bevande", image: "./image/Cibo e Bevande.png" },
+    { key: "intrattenimento-cultura", label: "Intrattenimento e Cultura", image: "./image/Intrattenimento e Cultura.png" },
+    { key: "ballo", label: "Ballo", image: "./image/Ballo.png" },
+    { key: "vita-quotidiana", label: "Vita Quotidiana", image: "./image/Vita Quotidiana.png" },
+    { key: "musica", label: "Musica", image: "./image/Musica.png" },
+    { key: "gioco", label: "Gioco", image: "./image/Gioco.png" },
+    { key: "famiglia", label: "Famiglia", image: "./image/Famiglia.png" },
+    { key: "scienza-educazione", label: "Scienza e Educazione", image: "./image/Scienza e Educazione.png" },
+    { key: "fitness-salute", label: "Fitness e Salute", image: "./image/Fitness e Salute.png" },
+    { key: "arte", label: "Arte", image: "./image/Arte.png" },
+    { key: "bellezza-stile", label: "Bellezza e Stile", image: "./image/Bellezza e Stile.png" },
+    { key: "casa-giardino", label: "Casa e Giardino", image: "./image/Casa e Giardino.png" },
+    { key: "grottesco", label: "Grottesco", image: "./image/Grottesco.png" },
+    { key: "viaggi", label: "Viaggi", image: "./image/Viaggi.png" },
+    { key: "aria-aperta", label: "Aria aperta", image: "./image/Aria aperta.png" },
+    { key: "trucchi-consigli", label: "Trucchi e consigli utili", image: "./image/Trucchi e consigli utili.png" },
+    { key: "motivazione-consigli", label: "Motivazione e Consigli", image: "./image/Motivazione e Consigli.png" },
+    { key: "fai-da-te", label: "Fai da Te", image: "./image/Fai da Te.png" },
+    { key: "animali", label: "Animali", image: "./image/Animali.png" },
+    { key: "anime-fumetti", label: "Anime e Fumetti", image: "./image/Anime e Fumetti.png" }
   ];
 
   var grid = document.getElementById("interestGrid");
   var btnNext = document.getElementById("btnNext");
   var btnSkip = document.getElementById("btnSkip");
 
-  INTERESTS.forEach(function (item, i) {
-    var thumbSrc = LOCAL_THUMBS[i % LOCAL_THUMBS.length];
+  INTERESTS.forEach(function (item) {
+    var thumbSrc = item.image;
     var card = window.createInterestCard(item, thumbSrc);
     grid.appendChild(card);
   });
@@ -60,10 +44,14 @@
 
   function sync() {
     var n = countSelected();
-    btnNext.textContent = "Next (" + n + ")";
+    btnNext.textContent = "Avanti (" + n + ")";
     btnNext.disabled = n === 0;
-    btnSkip.disabled = false;
-    btnSkip.removeAttribute("aria-disabled");
+    btnSkip.disabled = n > 0;
+    if (btnSkip.disabled) {
+      btnSkip.setAttribute("aria-disabled", "true");
+    } else {
+      btnSkip.removeAttribute("aria-disabled");
+    }
 
     cards.forEach(function (card) {
       card.setAttribute("aria-pressed", card.classList.contains("is-selected") ? "true" : "false");

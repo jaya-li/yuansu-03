@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Passo 1 Registrazione e Accesso — Figma 1643:364778</title>
+  <style>
+    :root {
+      --ui-page-flat-1: #ffffff;
+      --ui-text-1-display: #202020;
+      --ui-text-3: rgba(0, 0, 0, 0.48);
+      --ui-text-2: rgba(0, 0, 0, 0.65);
+      --ui-shape-neutral-3: rgba(0, 0, 0, 0.12);
+      --cta-primary: #fe2c55;
+      --cta-primary-press: #e61e4a;
+      --phone-w: 390px;
+      --font-sans: "TikTok Sans", system-ui, -apple-system, "SF Pro Text", "Segoe UI", sans-serif;
+      --font-text: "TikTok Text", system-ui, -apple-system, "SF Pro Text", sans-serif;
+      --font-sf: "SF Pro Text", -apple-system, system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+      font-family: var(--font-sans);
+    }
+
+    .device {
+      width: min(var(--phone-w), 100vw - 24px);
+      max-width: var(--phone-w);
+      min-height: min(844px, 100dvh - 24px);
+      max-height: min(844px, 100dvh - 24px);
+      background: var(--ui-page-flat-1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      border-radius: 2px;
+    }
+
+    .p1643 {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      color: var(--ui-text-1-display);
+    }
+
+    .p1643__status {
+      flex-shrink: 0;
+      height: 44px;
+      position: relative;
+      overflow: hidden;
+      padding-top: max(0px, env(safe-area-inset-top, 0px));
+    }
+
+    .p1643__status-time {
+      position: absolute;
+      left: 48px;
+      top: 14px;
+      transform: translateX(-50%);
+      font-family: var(--font-sf);
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 18px;
+      letter-spacing: -0.045px;
+      color: #000000;
+      text-align: center;
+      width: 54px;
+    }
+
+    .p1643__status-ico {
+      position: absolute;
+      right: 14.84px;
+      top: 16.8px;
+      width: 66.161px;
+      height: 11px;
+    }
+
+    .p1643__status-ico img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .p1643__nav {
+      flex-shrink: 0;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 6px;
+    }
+
+    .p1643__skip {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8px;
+      border: none;
+      background: transparent;
+      font-family: var(--font-text);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.3;
+      letter-spacing: 0.0296px;
+      color: var(--ui-text-3);
+      cursor: pointer;
+    }
+
+    .p1643__skip:hover {
+      color: var(--ui-text-1-display);
+    }
+
+    .p1643__hero {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 32px;
+    }
+
+    .p1643__hero-inner {
+      width: 240px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .p1643__logo {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p1643__logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .p1643__title {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1.2;
+      text-align: center;
+      color: var(--ui-text-1-display);
+    }
+
+    .p1643__actions {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 20px 32px;
+      width: 100%;
+    }
+
+    .p1643__btn-primary {
+      width: 100%;
+      max-width: 326px;
+      min-height: 52px;
+      padding: 0 24px;
+      border: none;
+      border-radius: 999px;
+      background: var(--cta-primary);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .p1643__btn-primary:hover {
+      background: var(--cta-primary-press);
+    }
+
+    .p1643__btn-primary-ico {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+    }
+
+    .p1643__btn-primary-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .p1643__or-row {
+      width: 100%;
+      max-width: 342px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .p1643__or-line {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 1px;
+      border-top: 0.5px solid var(--ui-shape-neutral-3);
+    }
+
+    .p1643__or-text {
+      flex-shrink: 0;
+      padding: 0 16px;
+      font-family: var(--font-text);
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.3;
+      letter-spacing: 0.1266px;
+      color: var(--ui-text-3);
+    }
+
+    .p1643__social {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .p1643__social-btn {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      border: none;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .p1643__social-btn:focus-visible {
+      outline: 2px solid #0066ff;
+      outline-offset: 2px;
+    }
+
+    .p1643__social-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .p1643__social-bg img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .p1643__social-ico {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .p1643__social-btn--fb .p1643__social-ico,
+    .p1643__social-btn--apple .p1643__social-ico,
+    .p1643__social-btn--google .p1643__social-ico {
+      width: 28px;
+      height: 28px;
+    }
+
+    .p1643__social-ico img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .p1643__legal {
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    .p1643__legal-inner {
+      padding: 8px 32px;
+      text-align: center;
+    }
+
+    .p1643__legal p {
+      margin: 0;
+      max-width: 480px;
+      margin-inline: auto;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 1.3;
+      color: var(--ui-text-3);
+    }
+
+    .p1643__legal a {
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--ui-text-2);
+      text-decoration: none;
+    }
+
+    .p1643__legal a:hover {
+      text-decoration: underline;
+    }
+
+    .p1643__home-ind {
+      height: 34px;
+      position: relative;
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    .p1643__home-ind::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 9px;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 5px;
+      background: #000000;
+      border-radius: 100px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 流程：第1步 注册登录（本页）→ 第2步 兴趣标签 figma-onboarding-1455-32069.html。Figma: …?node-id=1643-364778 -->
+  <div
+    class="device"
+    data-figma-node-id="1643:364778"
+    data-figma-file-key="70QQ04B6k7KbV7tcD9Y438"
+    data-onboarding-step="1"
+    data-onboarding-page="register"
+  >
+    <div class="p1643">
+      <header class="p1643__status" aria-hidden="true">
+        <span class="p1643__status-time">9:41</span>
+        <div class="p1643__status-ico">
+          <img src="./nuj-figma-assets/6d2924f68b3896226652171779a87f6ce65ec958.svg" alt="" width="66" height="11" draggable="false" />
+        </div>
+      </header>
+
+      <nav class="p1643__nav" aria-label="Barra superiore">
+        <button type="button" class="p1643__skip">Salta</button>
+      </nav>
+
+      <section class="p1643__hero" aria-labelledby="p1643-heading">
+        <div class="p1643__hero-inner">
+          <div class="p1643__logo" aria-hidden="true">
+            <img src="./nuj-figma-assets/c121670ba22277f1b0bdeab7ae0c596ea04aa622.svg" alt="" draggable="false" />
+          </div>
+          <h1 class="p1643__title" id="p1643-heading">Video per migliorare la tua giornata</h1>
+        </div>
+      </section>
+
+      <section class="p1643__actions" aria-label="Opzioni di accesso">
+        <button type="button" class="p1643__btn-primary">
+          <span class="p1643__btn-primary-ico" aria-hidden="true">
+            <!-- Tabler Icons MIT：折线听筒；略倾斜即可，避免过斜 -->
+            <svg
+              class="p1643__btn-primary-svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                transform="rotate(-8 12 12)"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"
+                />
+              </g>
+            </svg>
+          </span>
+          Continua con il telefono
+        </button>
+
+        <div class="p1643__or-row" aria-hidden="true">
+          <div class="p1643__or-line"></div>
+          <span class="p1643__or-text">Oppure</span>
+          <div class="p1643__or-line"></div>
+        </div>
+
+        <div class="p1643__social">
+          <button type="button" class="p1643__social-btn p1643__social-btn--mail" aria-label="Continua con email">
+            <span class="p1643__social-bg">
+              <img src="./nuj-figma-assets/1de0d9a28c37dc0dda948b4ae45d65e31fd95b7c.svg" alt="" draggable="false" />
+            </span>
+            <span class="p1643__social-ico">
+              <img src="./nuj-figma-assets/c4d2316e3af59cbbcf126cdddd6c5075a876f9e0.svg" alt="" draggable="false" />
+            </span>
+          </button>
+          <button type="button" class="p1643__social-btn p1643__social-btn--fb" aria-label="Continua con Facebook">
+            <span class="p1643__social-bg">
+              <img src="./nuj-figma-assets/1de0d9a28c37dc0dda948b4ae45d65e31fd95b7c.svg" alt="" draggable="false" />
+            </span>
+            <span class="p1643__social-ico">
+              <img src="./nuj-figma-assets/ca8823fa9cf58ee8cb0709624b021b6408cffbde.svg" alt="" draggable="false" />
+            </span>
+          </button>
+          <button type="button" class="p1643__social-btn p1643__social-btn--apple" aria-label="Continua con Apple">
+            <span class="p1643__social-bg">
+              <img src="./nuj-figma-assets/1de0d9a28c37dc0dda948b4ae45d65e31fd95b7c.svg" alt="" draggable="false" />
+            </span>
+            <span class="p1643__social-ico">
+              <img src="./nuj-figma-assets/d007ec5322bac3e6441b987381424fd868e66409.svg" alt="" draggable="false" />
+            </span>
+          </button>
+          <button type="button" class="p1643__social-btn p1643__social-btn--google" aria-label="Continua con Google">
+            <span class="p1643__social-bg">
+              <img src="./nuj-figma-assets/d2c5f07a7a0eac6dd3509c66dbb3ce092cc28843.svg" alt="" draggable="false" />
+            </span>
+            <span class="p1643__social-ico">
+              <img src="./nuj-figma-assets/6ee7ea19d75d8f033ffcc517d47efa66f743ea14.svg" alt="" draggable="false" />
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <footer class="p1643__legal">
+        <div class="p1643__legal-inner">
+          <p>
+            Continuando, accetti i nostri
+            <a href="#">Termini di Servizio</a>
+            e confermi di aver letto la nostra
+            <a href="#">Informativa sulla Privacy</a>
+            per sapere come raccogliamo, utilizziamo e condividiamo i tuoi dati.
+          </p>
+        </div>
+        <div class="p1643__home-ind" aria-hidden="true"></div>
+      </footer>
+    </div>
+  </div>
+  <script>
+    (function () {
+      /** 第1步 → 第2步；壳页 figma-onboarding.html 内用 postMessage */
+      var page2Url = new URL("figma-onboarding-1455-32069.html", window.location.href).href;
+      var device = document.querySelector(".device");
+      if (!device) return;
+      function goStep2() {
+        if (window.parent !== window) {
+          try {
+            window.parent.postMessage({ type: "onboarding-flow", step: 2 }, "*");
+            return;
+          } catch (e) {}
+        }
+        window.location.assign(page2Url);
+      }
+      device.querySelectorAll("button").forEach(function (btn) {
+        btn.addEventListener("click", goStep2);
+      });
+    })();
+  </script>
+</body>
+</html>
