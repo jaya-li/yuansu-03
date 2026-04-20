@@ -2,7 +2,7 @@
   var INTERESTS = [
     {
       key: "comicita",
-      label: "Comicità",
+      label: "Comicita",
       image: "./image/Comicita.png",
       imageFallbacks: ["./image/Comicità.png", "./image/Comicità.png"]
     },
