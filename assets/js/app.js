@@ -1,6 +1,6 @@
 (function () {
   var INTERESTS = [
-    { key: "comicita", label: "Comicità", image: "./image/Comicità.png" },
+    { key: "comicita", label: "Comicità", image: "./image/Comicita.png" },
     { key: "sport", label: "Sport", image: "./image/Sport.png" },
     { key: "cibo-bevande", label: "Cibo e Bevande", image: "./image/Cibo e Bevande.png" },
     { key: "intrattenimento-cultura", label: "Intrattenimento e Cultura", image: "./image/Intrattenimento e Cultura.png" },
