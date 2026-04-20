@@ -16,7 +16,7 @@
     return svg;
   }
 
-  function createInterestCard(item, thumbSrc) {
+  function createInterestCard(item) {
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "p1455__card";
@@ -26,7 +26,15 @@
     var thumb = document.createElement("div");
     thumb.className = "p1455__thumb";
     var img = document.createElement("img");
-    img.src = thumbSrc;
+    var imageCandidates = [item.image].concat(item.imageFallbacks || []);
+    var imageIndex = 0;
+    img.src = imageCandidates[imageIndex];
+    img.addEventListener("error", function () {
+      imageIndex += 1;
+      if (imageIndex < imageCandidates.length) {
+        img.src = imageCandidates[imageIndex];
+      }
+    });
     img.alt = "";
     img.draggable = false;
     thumb.appendChild(img);

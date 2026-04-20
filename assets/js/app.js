@@ -1,6 +1,11 @@
 (function () {
   var INTERESTS = [
-    { key: "comicita", label: "Comicità", image: "./image/Comicita.png" },
+    {
+      key: "comicita",
+      label: "Comicità",
+      image: "./image/Comicita.png",
+      imageFallbacks: ["./image/Comicità.png", "./image/Comicità.png"]
+    },
     { key: "sport", label: "Sport", image: "./image/Sport.png" },
     { key: "cibo-bevande", label: "Cibo e Bevande", image: "./image/Cibo e Bevande.png" },
     { key: "intrattenimento-cultura", label: "Intrattenimento e Cultura", image: "./image/Intrattenimento e Cultura.png" },
@@ -29,8 +34,7 @@
   var btnSkip = document.getElementById("btnSkip");
 
   INTERESTS.forEach(function (item) {
-    var thumbSrc = item.image;
-    var card = window.createInterestCard(item, thumbSrc);
+    var card = window.createInterestCard(item);
     grid.appendChild(card);
   });
 
