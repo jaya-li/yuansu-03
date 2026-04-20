@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Feed3 For You — Figma 1647:533575</title>
+  <style>
+    :root {
+      --phone-w: 390px;
+      --phone-h: 844px;
+      --mainnav-h: 83px;
+      --font-sans: "TikTok Sans", system-ui, -apple-system, "SF Pro Text", "Segoe UI", sans-serif;
+      --font-text: "TikTok Text", system-ui, -apple-system, "SF Pro Text", sans-serif;
+      --font-sf: "SF Pro Text", -apple-system, system-ui, sans-serif;
+      --font-serif: "Georgia", "Times New Roman", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+      font-family: var(--font-sans);
+    }
+
+    .f5335-device {
+      position: relative;
+      width: min(var(--phone-w), 100vw - 24px);
+      max-width: var(--phone-w);
+      height: min(var(--phone-h), 100dvh - 24px);
+      max-height: min(var(--phone-h), 100dvh - 24px);
+      background: #000;
+      overflow: hidden;
+      border-radius: 2px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+      color: #f6f6f6;
+    }
+
+    .f5335-canvas {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .f5335-video {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    /* 画板内视频层未导出位图：用 1635 同场景 poster 打底 + 本节点 Top/Bottom Overlay */
+    .f5335-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .f5335-ov-top {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 136px;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .f5335-ov-top img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scaleX(-1) rotate(180deg);
+    }
+
+    .f5335-ov-bot {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 158px;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .f5335-ov-bot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .f5335-hero {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 3;
+      pointer-events: none;
+      color: #fff;
+    }
+
+    .f5335-hero-t1 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+    }
+
+    .f5335-hero-line {
+      width: 120px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.55);
+      margin: 10px auto;
+    }
+
+    .f5335-hero-t2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: lowercase;
+      opacity: 0.95;
+    }
+
+    .f5335-status {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 47px;
+      z-index: 20;
+      overflow: hidden;
+      padding-top: max(0px, env(safe-area-inset-top, 0px));
+      pointer-events: none;
+    }
+
+    .f5335-status-time {
+      position: absolute;
+      left: 64px;
+      top: 50%;
+      transform: translate(-50%, calc(-50% - 0.5px));
+      font-family: var(--font-sf);
+      font-weight: 600;
+      font-size: 17px;
+      line-height: 22px;
+      letter-spacing: -0.41px;
+      color: #ffffff;
+      text-align: center;
+      width: 58px;
+    }
+
+    .f5335-status-ico {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .f5335-status-ico img {
+      display: block;
+    }
+
+    .f5335-status-ico--sig {
+      right: 84.7px;
+      width: 21.298px;
+      height: 12.798px;
+    }
+
+    .f5335-status-ico--conn {
+      right: 60.32px;
+      width: 17.68px;
+      height: 13px;
+    }
+
+    .f5335-status-ico--bat {
+      right: 25.57px;
+      width: 29.432px;
+      height: 14px;
+    }
+
+    .f5335-tabbar {
+      position: absolute;
+      top: 47px;
+      left: 0;
+      right: 0;
+      height: 44px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+      pointer-events: none;
+    }
+
+    .f5335-tab-lead,
+    .f5335-tab-trail {
+      flex-shrink: 0;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+    }
+
+    .f5335-tab-lead img,
+    .f5335-tab-trail img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .f5335-tab-center {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 44px;
+      gap: 4px;
+      padding: 0 8px;
+    }
+
+    .f5335-tab {
+      font-family: var(--font-text);
+      font-size: 17px;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      padding: 0 8px 0;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .f5335-tab--active {
+      position: relative;
+      color: #f6f6f6;
+      font-weight: 700;
+    }
+
+    .f5335-tab--active::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 2px;
+      background: #f6f6f6;
+      border-radius: 1px;
+    }
+
+    .f5335-dock {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: var(--mainnav-h);
+      z-index: 10;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .f5335-meta {
+      flex: 1;
+      min-width: 0;
+      max-width: calc(100% - 48px);
+      padding: 12px 12px 10px;
+      pointer-events: auto;
+    }
+
+    .f5335-meta-inner {
+      max-width: 278px;
+      padding-right: 40px;
+    }
+
+    .f5335-meta-user {
+      margin: 0 0 8px;
+      font-weight: 600;
+      font-size: 17px;
+      line-height: 1.3;
+      color: #f0f0f0;
+    }
+
+    .f5335-meta-desc {
+      margin: 0 0 8px;
+      font-size: 15px;
+      line-height: 1.3;
+      color: #f0f0f0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .f5335-meta-music {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      max-width: 278px;
+    }
+
+    .f5335-meta-music img {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .f5335-meta-music span {
+      font-size: 14px;
+      line-height: 1.3;
+      color: #f0f0f0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .f5335-rail {
+      flex-shrink: 0;
+      width: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .f5335-rail-ava {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4px 6px 10px 10px;
+      width: 100%;
+    }
+
+    .f5335-rail-ava-ring {
+      position: relative;
+      width: 44px;
+      height: 44px;
+    }
+
+    .f5335-rail-ava-facestack {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .f5335-rail-ava-facestack img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .f5335-rail-ava-ring .stroke {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 45px;
+      height: 45px;
+      pointer-events: none;
+    }
+
+    .f5335-rail-follow {
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .f5335-rail-follow img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .f5335-rail-act {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 8px 6px 8px 10px;
+    }
+
+    .f5335-rail-ico {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .f5335-rail-ico > img {
+      max-width: 140%;
+      max-height: 140%;
+      object-fit: contain;
+    }
+
+    /* Icon_Color/*_Shadow_Alt — 与 Figma 1647:533649 Interaction 内 inset 一致 */
+    .f5335-rail-sh {
+      position: absolute;
+      overflow: hidden;
+    }
+
+    .f5335-rail-sh img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: fill;
+    }
+
+    .f5335-rail-ico--like .f5335-rail-sh--a {
+      inset: 9.42% 4.17% 7.8% 4.17%;
+    }
+
+    .f5335-rail-ico--like .f5335-rail-sh--b {
+      inset: -7.55% -10.23% -15.1% -10.23%;
+    }
+
+    .f5335-rail-ico--cmt .f5335-rail-sh--a {
+      inset: 6.25% 5.04% 6.27% 5.21%;
+    }
+
+    .f5335-rail-ico--cmt .f5335-rail-sh--b {
+      inset: -7.14% -10.45% -14.29% -10.45%;
+    }
+
+    .f5335-rail-ico--bm .f5335-rail-sh--a {
+      inset: 10.42% 16.67% 14.04% 16.67%;
+    }
+
+    .f5335-rail-ico--bm .f5335-rail-sh--b {
+      inset: -8.27% -14.06% -16.55% -14.06%;
+    }
+
+    .f5335-rail-ico--share .f5335-rail-sh--a {
+      inset: 7.29% 6.25% 9.38% 6.25%;
+    }
+
+    .f5335-rail-ico--share .f5335-rail-sh--b {
+      inset: -7.5% -10.71% -15% -10.71%;
+    }
+
+    .f5335-rail-count {
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #f6f6f6;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(22, 24, 35, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .f5335-rail-disk {
+      padding: 8px 8px 12px 12px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .f5335-rail-disk-inner {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .f5335-rail-disk-inner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .f5335-mainnav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: var(--mainnav-h);
+      z-index: 24;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .f5335-navrow {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      gap: 2px;
+      height: 49px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .f5335-navrow::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      border-top: 0.5px solid rgba(255, 255, 255, 0.19);
+      pointer-events: none;
+    }
+
+    .f5335-navcell {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 49px;
+      padding: 2px 0 4px;
+      overflow: hidden;
+    }
+
+    .f5335-navcell--tab3 {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 49px;
+      padding: 2px 0 0;
+    }
+
+    .f5335-nav-ico32 {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: -1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .f5335-nav-ico32 img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* Rounded/* 图标区：Figma inset 12.5% → 24×24 */
+    .f5335-nav-round24 {
+      position: absolute;
+      inset: 12.5%;
+      overflow: hidden;
+    }
+
+    .f5335-nav-fr-part--a {
+      position: absolute;
+      height: 19.902px;
+      left: 0.42%;
+      right: 28.91%;
+      top: 1.1px;
+    }
+
+    .f5335-nav-fr-part--a img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .f5335-nav-fr-part--b {
+      position: absolute;
+      height: 16.778px;
+      left: 59.51%;
+      right: 0.5%;
+      top: 2.29px;
+    }
+
+    .f5335-nav-fr-part--b img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .f5335-nav-inbox-u {
+      position: absolute;
+      height: 21.617px;
+      left: 0.5px;
+      top: 1px;
+      width: 22px;
+    }
+
+    .f5335-nav-inbox-u img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .f5335-nav-profile-u {
+      position: absolute;
+      height: 21.766px;
+      left: 9.38%;
+      right: 9.38%;
+      top: 0.5px;
+    }
+
+    .f5335-nav-profile-u img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .f5335-nav-home24 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+    }
+
+    .f5335-nav-home24 img {
+      position: absolute;
+      left: 0.88px;
+      top: 0.68px;
+      width: 20.5px;
+      height: 21.139px;
+      max-width: none;
+      object-fit: contain;
+    }
+
+    .f5335-nav-label {
+      margin: 0;
+      font-size: 10px;
+      line-height: 1.3;
+      font-weight: 500;
+      letter-spacing: 0.23px;
+      text-align: center;
+    }
+
+    .f5335-nav-label--on {
+      color: #f6f6f6;
+    }
+
+    .f5335-nav-label--muted {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .f5335-create {
+      width: 48px;
+      height: 48px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-top: -1px;
+    }
+
+    .f5335-create-base {
+      position: absolute;
+      left: 1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 28.775px;
+    }
+
+    .f5335-create-base img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .f5335-create-plus-v {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 12px;
+      overflow: visible;
+    }
+
+    .f5335-create-plus-h {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      width: 0;
+      height: 12px;
+      overflow: visible;
+    }
+
+    .f5335-create-vecpad {
+      position: absolute;
+      top: -12.5%;
+      right: -1.5px;
+      bottom: -12.5%;
+      left: -1.5px;
+    }
+
+    .f5335-create-vecpad img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: fill;
+    }
+
+    .f5335-home-ind {
+      height: 34px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .f5335-home-ind::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 5px;
+      background: #fff;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+  <!--
+    Figma Feed3: https://www.figma.com/design/70QQ04B6k7KbV7tcD9Y438/%F0%9F%91%8B-2026-onboading?node-id=1647-533575&m=dev
+    资源与 MCP get_design_context(1647:533575) 导出一致；底部 Mainav 同文件内 1647:533653。
+    视频 poster 仍用画板外占位（Figma 视频层无位图导出）。
+  -->
+  <div
+    class="f5335-device"
+    data-figma-file-key="70QQ04B6k7KbV7tcD9Y438"
+    data-figma-node-id="1647:533575"
+    data-onboarding-step="3"
+    data-onboarding-page="feed-for-you"
+  >
+    <div class="f5335-canvas" role="application" aria-label="For You feed preview">
+      <div class="f5335-video">
+        <img
+          class="f5335-poster"
+          src="https://www.figma.com/api/mcp/asset/ad82f761-ec53-404e-8f4e-3ea7f608e175"
+          alt=""
+          draggable="false"
+        />
+        <div class="f5335-ov-top" aria-hidden="true">
+          <img src="https://www.figma.com/api/mcp/asset/5968ef03-0e7c-458c-a4fe-f0170ff5111a" alt="" />
+        </div>
+        <div class="f5335-ov-bot" aria-hidden="true">
+          <img src="https://www.figma.com/api/mcp/asset/4c1ccb55-a1df-4e10-8fa0-d38da9b987a0" alt="" />
+        </div>
+        <div class="f5335-hero" aria-hidden="true">
+          <p class="f5335-hero-t1">japan</p>
+          <div class="f5335-hero-line"></div>
+          <p class="f5335-hero-t2">niseko hokkaido</p>
+        </div>
+      </div>
+
+      <header class="f5335-status" aria-hidden="true">
+        <span class="f5335-status-time">8:00</span>
+        <div class="f5335-status-ico f5335-status-ico--sig">
+          <img src="https://www.figma.com/api/mcp/asset/ed05bf0c-f084-42e6-a673-987f9e2e1491" alt="" width="21" height="13" />
+        </div>
+        <div class="f5335-status-ico f5335-status-ico--conn">
+          <img src="https://www.figma.com/api/mcp/asset/fcae8f48-faf0-4cf8-b443-74249bd1787f" alt="" width="18" height="13" />
+        </div>
+        <div class="f5335-status-ico f5335-status-ico--bat">
+          <img src="https://www.figma.com/api/mcp/asset/5e781165-f5a9-4874-97d8-f14f3d372bd6" alt="" width="29" height="14" />
+        </div>
+      </header>
+
+      <nav class="f5335-tabbar" aria-label="Feed tabs">
+        <div class="f5335-tab-lead">
+          <img src="https://www.figma.com/api/mcp/asset/efe6bce9-b661-43b3-8ff2-57a2254ce758" alt="" />
+        </div>
+        <div class="f5335-tab-center">
+          <span class="f5335-tab">Following</span>
+          <span class="f5335-tab f5335-tab--active">For You</span>
+        </div>
+        <div class="f5335-tab-trail">
+          <img src="https://www.figma.com/api/mcp/asset/3cb2d902-fb7a-47a1-90ec-e2fad93aca84" alt="" />
+        </div>
+      </nav>
+
+      <div class="f5335-dock">
+        <div class="f5335-meta">
+          <div class="f5335-meta-inner">
+            <p class="f5335-meta-user">Alvin</p>
+            <p class="f5335-meta-desc">I can discover more of what I like on TikTok and really enjoy watching.</p>
+            <div class="f5335-meta-music">
+              <img src="https://www.figma.com/api/mcp/asset/b6374a95-ffc1-44b6-a175-4e2ebbbf49ce" alt="" />
+              <span>Ultra Instinct - adamdevito</span>
+            </div>
+          </div>
+        </div>
+        <aside class="f5335-rail" aria-label="Actions">
+          <div class="f5335-rail-ava">
+            <div class="f5335-rail-ava-ring">
+              <div class="f5335-rail-ava-facestack" aria-hidden="true">
+                <img src="https://www.figma.com/api/mcp/asset/9e2f3a88-560d-40a9-9f94-095f788b3283" alt="" />
+                <img src="https://www.figma.com/api/mcp/asset/1bf63b37-1e84-4904-b990-cff6f2f271c2" alt="" />
+                <img src="https://www.figma.com/api/mcp/asset/0fef5367-35d5-4ab2-8b48-0eab1b07952d" alt="" />
+                <img src="https://www.figma.com/api/mcp/asset/70aa4db8-dae0-45d5-bb12-961a0a578c49" alt="" />
+                <img src="https://www.figma.com/api/mcp/asset/c21364c1-269b-4cbc-ba89-19adab2d44b1" alt="" />
+                <img src="https://www.figma.com/api/mcp/asset/8c984f3d-2955-475f-8fc5-b1d9fc91d131" alt="" />
+              </div>
+              <img class="stroke" src="https://www.figma.com/api/mcp/asset/95d166cd-7833-44d9-9fd9-08af3b0f2aaa" alt="" />
+            </div>
+            <div class="f5335-rail-follow">
+              <img src="https://www.figma.com/api/mcp/asset/e2ad7b1f-fd99-4756-acdc-5f457a59a9f2" alt="" />
+            </div>
+          </div>
+          <div class="f5335-rail-act">
+            <div class="f5335-rail-ico f5335-rail-ico--like" aria-hidden="true">
+              <div class="f5335-rail-sh f5335-rail-sh--a">
+                <div class="f5335-rail-sh f5335-rail-sh--b">
+                  <img src="https://www.figma.com/api/mcp/asset/0697d775-e00c-44c3-b9b9-2d4ea72fca21" alt="" />
+                </div>
+              </div>
+            </div>
+            <span class="f5335-rail-count">12K</span>
+          </div>
+          <div class="f5335-rail-act">
+            <div class="f5335-rail-ico f5335-rail-ico--cmt" aria-hidden="true">
+              <div class="f5335-rail-sh f5335-rail-sh--a">
+                <div class="f5335-rail-sh f5335-rail-sh--b">
+                  <img src="https://www.figma.com/api/mcp/asset/85c1390f-c926-4d5c-ba8f-52555f3f6d2e" alt="" />
+                </div>
+              </div>
+            </div>
+            <span class="f5335-rail-count">456</span>
+          </div>
+          <div class="f5335-rail-act">
+            <div class="f5335-rail-ico f5335-rail-ico--bm" aria-hidden="true">
+              <div class="f5335-rail-sh f5335-rail-sh--a">
+                <div class="f5335-rail-sh f5335-rail-sh--b">
+                  <img src="https://www.figma.com/api/mcp/asset/a89a2335-0284-4bc4-8ca5-7742327eaa4b" alt="" />
+                </div>
+              </div>
+            </div>
+            <span class="f5335-rail-count">68</span>
+          </div>
+          <div class="f5335-rail-act">
+            <div class="f5335-rail-ico f5335-rail-ico--share" aria-hidden="true">
+              <div class="f5335-rail-sh f5335-rail-sh--a">
+                <div class="f5335-rail-sh f5335-rail-sh--b">
+                  <img src="https://www.figma.com/api/mcp/asset/5d46e919-e6e5-424b-a73b-2b610add32e8" alt="" />
+                </div>
+              </div>
+            </div>
+            <span class="f5335-rail-count">43</span>
+          </div>
+          <div class="f5335-rail-disk">
+            <div class="f5335-rail-disk-inner">
+              <img src="https://www.figma.com/api/mcp/asset/b489c46b-a8c1-475c-b05f-ee00c78319da" alt="" />
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="f5335-mainnav" aria-label="Main navigation">
+        <div class="f5335-navrow">
+          <div class="f5335-navcell">
+            <div class="f5335-nav-ico32">
+              <div class="f5335-nav-home24" aria-hidden="true">
+                <!-- Mainav 1647:533653 — Rounded/Home Subtract -->
+                <img src="https://www.figma.com/api/mcp/asset/a9d0e54e-6b60-47c7-b37a-44c15533c7f8" alt="" />
+              </div>
+            </div>
+            <p class="f5335-nav-label f5335-nav-label--on">Home</p>
+          </div>
+          <div class="f5335-navcell">
+            <div class="f5335-nav-ico32">
+              <div class="f5335-nav-round24" aria-hidden="true">
+                <div class="f5335-nav-fr-part f5335-nav-fr-part--a">
+                  <img src="https://www.figma.com/api/mcp/asset/e0ec45d9-e382-4982-a6e3-41ff9f362c8d" alt="" />
+                </div>
+                <div class="f5335-nav-fr-part f5335-nav-fr-part--b">
+                  <img src="https://www.figma.com/api/mcp/asset/62bd127b-3a97-476f-bd91-a68cf2df63a3" alt="" />
+                </div>
+              </div>
+            </div>
+            <p class="f5335-nav-label f5335-nav-label--muted">Friends</p>
+          </div>
+          <div class="f5335-navcell--tab3">
+            <div class="f5335-create" aria-hidden="true">
+              <div class="f5335-create-base">
+                <img src="https://www.figma.com/api/mcp/asset/963fe721-a551-435e-842f-7c401dc9723f" alt="" />
+              </div>
+              <div class="f5335-create-plus-v">
+                <div class="f5335-create-vecpad">
+                  <img src="https://www.figma.com/api/mcp/asset/2ff45b05-8647-4653-abd2-c933f2e4dda6" alt="" />
+                </div>
+              </div>
+              <div class="f5335-create-plus-h">
+                <div class="f5335-create-vecpad">
+                  <img src="https://www.figma.com/api/mcp/asset/da81f36a-f9ce-4821-b2c4-0366667c7505" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="f5335-navcell">
+            <div class="f5335-nav-ico32">
+              <div class="f5335-nav-round24" aria-hidden="true">
+                <div class="f5335-nav-inbox-u">
+                  <img src="https://www.figma.com/api/mcp/asset/506b640b-1c71-48ee-94a5-776dc83b5d1c" alt="" />
+                </div>
+              </div>
+            </div>
+            <p class="f5335-nav-label f5335-nav-label--muted">Inbox</p>
+          </div>
+          <div class="f5335-navcell">
+            <div class="f5335-nav-ico32">
+              <div class="f5335-nav-round24" aria-hidden="true">
+                <div class="f5335-nav-profile-u">
+                  <img src="https://www.figma.com/api/mcp/asset/73b4e758-15b0-4aa6-86fd-0cd49f4259c2" alt="" />
+                </div>
+              </div>
+            </div>
+            <p class="f5335-nav-label f5335-nav-label--muted">Profile</p>
+          </div>
+        </div>
+        <div class="f5335-home-ind" aria-hidden="true"></div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
