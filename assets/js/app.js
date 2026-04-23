@@ -7,8 +7,7 @@
     {
       key: "comedia",
       label: "Comedia",
-      image: "./image/Comedia.png",
-      imageFallbacks: ["./image/Comicita.png", "./image/Comicità.png", "./image/Comicità.png"]
+      image: "./image/Comedia.png"
     },
     { key: "comida-bebida", label: "Comida y bebida", image: "./image/Comida y bebida.png" },
     { key: "automocion-vehiculos", label: "Automoción y vehículos", image: "./image/Automoción y vehículos.png" },
