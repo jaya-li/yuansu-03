@@ -1,32 +1,33 @@
 (function () {
   var INTERESTS = [
+    { key: "ciencias-educacion", label: "Ciencias y educación", image: "./image/Ciencias y educación.png" },
+    { key: "deportes", label: "Deportes", image: "./image/Deportes.png" },
+    { key: "fitness-salud", label: "Fitness y salud", image: "./image/Fitness y salud.png" },
+    { key: "musica", label: "Música", image: "./image/Música.png" },
     {
-      key: "comicita",
-      label: "Comicita",
-      image: "./image/Comicita.png",
-      imageFallbacks: ["./image/Comicità.png", "./image/Comicità.png"]
+      key: "comedia",
+      label: "Comedia",
+      image: "./image/Comedia.png",
+      imageFallbacks: ["./image/Comicita.png", "./image/Comicità.png", "./image/Comicità.png"]
     },
-    { key: "sport", label: "Sport", image: "./image/Sport.png" },
-    { key: "cibo-bevande", label: "Cibo e Bevande", image: "./image/Cibo e Bevande.png" },
-    { key: "intrattenimento-cultura", label: "Intrattenimento e Cultura", image: "./image/Intrattenimento e Cultura.png" },
-    { key: "ballo", label: "Ballo", image: "./image/Ballo.png" },
-    { key: "vita-quotidiana", label: "Vita Quotidiana", image: "./image/Vita Quotidiana.png" },
-    { key: "musica", label: "Musica", image: "./image/Musica.png" },
-    { key: "gioco", label: "Gioco", image: "./image/Gioco.png" },
-    { key: "famiglia", label: "Famiglia", image: "./image/Famiglia.png" },
-    { key: "scienza-educazione", label: "Scienza e Educazione", image: "./image/Scienza e Educazione.png" },
-    { key: "fitness-salute", label: "Fitness e Salute", image: "./image/Fitness e Salute.png" },
+    { key: "comida-bebida", label: "Comida y bebida", image: "./image/Comida y bebida.png" },
+    { key: "automocion-vehiculos", label: "Automoción y vehículos", image: "./image/Automoción y vehículos.png" },
+    { key: "diy", label: "DIY", image: "./image/DIY.png" },
+    { key: "animales", label: "Animales", image: "./image/Animales.png" },
+    { key: "belleza-estilo", label: "Belleza y estilo", image: "./image/Belleza y estilo.png" },
+    { key: "viajes", label: "Viajes", image: "./image/Viajes.png" },
+    { key: "motivacion-consejos", label: "Motivación y consejos", image: "./image/Motivación y consejos.png" },
+    { key: "juegos", label: "Juegos", image: "./image/Juegos.png" },
+    { key: "entretenimiento", label: "Entretenimiento", image: "./image/Entretenimiento.png" },
     { key: "arte", label: "Arte", image: "./image/Arte.png" },
-    { key: "bellezza-stile", label: "Bellezza e Stile", image: "./image/Bellezza e Stile.png" },
-    { key: "casa-giardino", label: "Casa e Giardino", image: "./image/Casa e Giardino.png" },
-    { key: "grottesco", label: "Grottesco", image: "./image/Grottesco.png" },
-    { key: "viaggi", label: "Viaggi", image: "./image/Viaggi.png" },
-    { key: "aria-aperta", label: "Aria aperta", image: "./image/Aria aperta.png" },
-    { key: "trucchi-consigli", label: "Trucchi e consigli utili", image: "./image/Trucchi e consigli utili.png" },
-    { key: "motivazione-consigli", label: "Motivazione e Consigli", image: "./image/Motivazione e Consigli.png" },
-    { key: "fai-da-te", label: "Fai da Te", image: "./image/Fai da Te.png" },
-    { key: "animali", label: "Animali", image: "./image/Animali.png" },
-    { key: "anime-fumetti", label: "Anime e Fumetti", image: "./image/Anime e Fumetti.png" }
+    { key: "trucos-vida-cotidiana", label: "Trucos para la vida cotidiana", image: "./image/Trucos para la vida cotidiana.png" },
+    { key: "actividades-aire-libre", label: "Actividades al aire libre", image: "./image/Actividades al aire libre.png" },
+    { key: "hogar-jardin", label: "Hogar y jardín", image: "./image/Hogar y jardín.png" },
+    { key: "vida-cotidiana", label: "Vida cotidiana", image: "./image/Vida cotidiana.png" },
+    { key: "familia", label: "Familia", image: "./image/Familia.png" },
+    { key: "animes-comics", label: "Animes y cómics", image: "./image/Animes y cómics.png" },
+    { key: "extranamente-satisfactorio", label: "Extrañamente satisfactorio", image: "./image/Extrañamente satisfactorio.png" },
+    { key: "baile", label: "Baile", image: "./image/Baile.png" }
   ];
 
   var grid = document.getElementById("interestGrid");
@@ -48,7 +49,7 @@
 
   function sync() {
     var n = countSelected();
-    btnNext.textContent = "Avanti (" + n + ")";
+    btnNext.textContent = "Siguiente (" + n + ")";
     btnNext.disabled = n === 0;
     btnSkip.disabled = n > 0;
     if (btnSkip.disabled) {
